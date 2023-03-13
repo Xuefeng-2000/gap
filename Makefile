@@ -1,7 +1,11 @@
 # See LICENSE.txt for license details.
 
-CXX_FLAGS += -std=c++11 -O3 -Wall
-PAR_FLAG = -fopenmp
+CXX=arm-linux-gnueabihf-g++
+CXX_FLAGS += -O3 -static -std=c++11 -g -fno-tree-vectorize
+PAR_FLAG = -fopenmp 
+SERIAL=1
+PATH_TO_EXE=/data/zxf/benchmark/gap/gapbs/bin_g
+#/data/zxf/benchmark/gap/gapbs/bin
 
 ifneq (,$(findstring icpc,$(CXX)))
 	PAR_FLAG = -openmp
@@ -23,7 +27,7 @@ SUITE = $(KERNELS) converter
 all: $(SUITE)
 
 % : src/%.cc src/*.h
-	$(CXX) $(CXX_FLAGS) $< -o $@
+	$(CXX) $(CXX_FLAGS) $< -o ${PATH_TO_EXE}/$@
 
 # Testing
 include test/test.mk
