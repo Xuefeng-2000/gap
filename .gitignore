@@ -1,12 +1,4 @@
-bc
-bfs
-cc
-cc_sv
-converter
-pr
-pr_spmv
-sssp
-tc
+
 
 test/out/*.out
 
